@@ -101,13 +101,13 @@ $query_Recordset3 = "SELECT count(*) as CountAll  FROM anniv34 WHERE ValTag <>1"
 $Recordset3 = mysqli_query($fdelix_HCADatabase, $query_Recordset3) or die(mysqli_error());
 $row_Recordset3 = mysqli_fetch_assoc($Recordset3);
 $totalRows_Recordset3 = mysqli_num_rows($Recordset3);
-
+$xOrder ="ASC";
 $colname_Recordset1 = "Surname";
 if (isset($_GET['firstSort'])) {
   $colname_Recordset1 = $_GET['firstSort'];
 }
 if ($colname_Recordset1 == "RcdCd") {
-  $xOrder =" DESC";
+  $xOrder ="ASC";
 } else {
   if ($colname_Recordset1 == "default") {	
   	$colname_Recordset1 = "Surname, Name";
@@ -330,10 +330,10 @@ document.oncontextmenu=new Function("return false")
                      <span class="input-group-addon"><i class="glyphicon glyphicon-sort-by-alphabet"></i></span>
 						<select class="form-control" name="firstSort" id="firstSort" onChange="submit()">
                         	<option value="default" selected="selected">-- Please Sort By --</option>
-						  <option value="Surname" <?php if (!(strcmp("Surname", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Surname</option>
-						  <option value="Name" <?php if (!(strcmp("Name", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Name</option>
-						  <option value="Ministry" <?php if (!(strcmp("Ministry", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Section</option>
-<option value="RcdCd" <?php if (!(strcmp("RcdCd", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Registered Date [New on Top]</option>
+						  <option value="Surname" <?php if (!(isset($_GET ['firstSort']) && strcmp("Surname", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Surname</option>
+						  <option value="Name" <?php if (!(isset($_GET ['firstSort']) && strcmp("Name", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Name</option>
+						  <option value="Ministry" <?php if (!(isset($_GET ['firstSort']) && strcmp("Ministry", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Section</option>
+<option value="RcdCd" <?php if (!(isset($_GET ['firstSort']) && strcmp("RcdCd", $_GET['firstSort']))) {echo "selected=\"selected\"";} ?>>Registered Date [New on Top]</option>
 			          </select>
               </div>    
       </form>	
